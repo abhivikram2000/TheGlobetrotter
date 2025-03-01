@@ -10,7 +10,8 @@ A fun geography quiz game that tests your knowledge of world destinations. Guess
 - Score tracking
 - Fun facts and trivia about each destination
 - Responsive design with light/dark mode support
-- Shareable results
+- Shareable results with clipboard integration
+- Custom favicon and PWA support
 
 ## Technology Stack
 
@@ -25,6 +26,7 @@ A fun geography quiz game that tests your knowledge of world destinations. Guess
 - **Testing**:
   - [Jest](https://jestjs.io/) for unit and integration testing
   - [Testing Library](https://testing-library.com/) for React component testing
+  - [User Event](https://testing-library.com/docs/user-event/intro/) for simulating user interactions
 
 - **Development Tools**:
   - [ESLint](https://eslint.org/) for code linting
@@ -42,7 +44,7 @@ A fun geography quiz game that tests your knowledge of world destinations. Guess
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/TheGlobetrotter.git
+   git clone https://github.com/abhivikram2000/TheGlobetrotter.git
    cd TheGlobetrotter
    ```
 
@@ -88,15 +90,27 @@ src/
 │   ├── api/              # API routes
 │   │   └── destinations/ # Destinations API
 │   ├── components/       # React components
+│   │   └── __tests__/    # Component tests
 │   ├── contexts/         # React contexts
 │   ├── data/             # Static data
 │   ├── lib/              # Utility functions
 │   ├── theme/            # Theme configuration
-│   ├── types/            # TypeScript type definitions
+│   ├── __tests__/        # App-level tests
 │   ├── page.tsx          # Home page
-│   └── layout.tsx        # Root layout
-├── public/               # Static assets
-└── __tests__/            # Test files
+│   ├── layout.tsx        # Root layout
+│   └── ClientLayout.tsx  # Client-side layout wrapper
+├── types/                # Global TypeScript type definitions
+└── public/               # Static assets
+    ├── icons/            # Favicon and app icons
+    │   ├── android-chrome-192x192.png
+    │   ├── android-chrome-512x512.png
+    │   ├── apple-touch-icon.png
+    │   ├── favicon-16x16.png
+    │   └── favicon-32x32.png
+    ├── favicon.ico       # Main favicon
+    ├── globe-favicon.svg # SVG version of favicon
+    ├── site.webmanifest  # PWA manifest file
+    └── other assets      # Additional static files
 ```
 
 ## API Routes
@@ -118,16 +132,27 @@ yarn build
 - **Next.js App Router**: Used for its file-based routing system and built-in API routes
 - **Material UI**: Chosen for its comprehensive component library and theming capabilities
 - **TypeScript**: Implemented for type safety and better developer experience
-- **Jest**: Selected for testing to ensure code reliability
+- **Jest & Testing Library**: Selected for testing to ensure code reliability
 - **Static Data**: Destinations are stored in a JSON file for simplicity, but could be migrated to a database in the future
+- **PWA Support**: Added web manifest and various icon sizes for better mobile experience
+- **Share Functionality**: Implemented with Web Share API and clipboard fallback for cross-browser compatibility
+
+## Technical Challenges & Solutions
+
+- **Clipboard API**: Implemented a robust clipboard solution with fallbacks for older browsers
+- **Testing Randomness**: Used Math.random mocking in tests to ensure consistent clue selection
+- **Responsive Design**: Utilized Material UI's responsive components and theme breakpoints
+- **Theme Switching**: Implemented context-based theme switching with persistent user preferences
+- **PWA Configuration**: Created proper favicon set and web manifest for installable experience
 
 ## Future Enhancements
 
 - User authentication and profiles
 - Leaderboards
 - More quiz categories
-- Progressive Web App (PWA) support
+- Enhanced PWA features
 - Multiplayer mode
+- Offline support
 
 ## License
 
