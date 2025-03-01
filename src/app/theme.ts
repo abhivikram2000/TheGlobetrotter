@@ -1,5 +1,6 @@
-import { createTheme, PaletteMode, Theme } from '@mui/material/styles';
+import { createTheme, Theme } from '@mui/material/styles';
 import { Components } from '@mui/material/styles/components';
+import { PaletteMode } from '@mui/material';
 
 export type ColorScheme = 'default' | 'sunset' | 'ocean' | 'forest' | 'aurora' | 'cosmic' | 'desert' | 'royal';
 
