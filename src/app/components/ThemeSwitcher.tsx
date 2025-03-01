@@ -28,14 +28,14 @@ import { useTheme } from '../contexts/ThemeContext';
 import type { ColorScheme } from '../theme';
 
 const colorSchemes: { value: ColorScheme; label: string; icon: JSX.Element }[] = [
-  { value: 'default', label: 'Default', icon: <Palette /> },
-  { value: 'sunset', label: 'Sunset', icon: <WbSunny /> },
-  { value: 'ocean', label: 'Ocean', icon: <WaterDrop /> },
-  { value: 'forest', label: 'Forest', icon: <Park /> },
-  { value: 'aurora', label: 'Aurora', icon: <Flare /> },
-  { value: 'cosmic', label: 'Cosmic', icon: <Stars /> },
-  { value: 'desert', label: 'Desert', icon: <Terrain /> },
-  { value: 'royal', label: 'Royal', icon: <Diamond /> },
+  { value: 'midnight', label: 'Midnight', icon: <Stars /> },
+  { value: 'emerald', label: 'Emerald', icon: <Park /> },
+  { value: 'coral', label: 'Coral', icon: <WbSunny /> },
+  { value: 'lavender', label: 'Lavender', icon: <Flare /> },
+  { value: 'nordic', label: 'Nordic', icon: <Palette /> },
+  { value: 'autumn', label: 'Autumn', icon: <Terrain /> },
+  { value: 'azure', label: 'Azure', icon: <WaterDrop /> },
+  { value: 'golden', label: 'Golden', icon: <Diamond /> },
 ];
 
 export default function ThemeSwitcher() {

@@ -15,7 +15,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({
   mode: 'light',
-  colorScheme: 'default',
+  colorScheme: 'midnight',
   toggleMode: () => {},
   setColorScheme: () => {},
 });
@@ -24,7 +24,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<PaletteMode>('light');
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('default');
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('midnight');
 
   useEffect(() => {
     // Load saved preferences from localStorage
