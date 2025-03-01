@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { User } from '../lib/types';
 import {
   Dialog,
@@ -20,7 +20,8 @@ import {
   WhatsApp,
   Share,
   EmojiEvents,
-  Check
+  Check,
+  ContentCopy
 } from '@mui/icons-material';
 
 interface SharePopupProps {
@@ -30,10 +31,17 @@ interface SharePopupProps {
 
 export default function SharePopup({ user, onClose }: SharePopupProps) {
   const [copied, setCopied] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [canNativeShare, setCanNativeShare] = useState(false);
   const shareUrl = `${window.location.origin}?invite=${encodeURIComponent(user.username)}`;
   
+  useEffect(() => {
+    // Check if the Web Share API is available
+    setCanNativeShare(typeof navigator !== 'undefined' && !!navigator.share);
+  }, []);
+  
   const handleShare = async () => {
-    if (navigator.share) {
+    if (canNativeShare) {
       try {
         await navigator.share({
           title: 'Globetrotter Challenge',
@@ -45,14 +53,45 @@ export default function SharePopup({ user, onClose }: SharePopupProps) {
       }
     } else {
       // Fallback to copying to clipboard
-      try {
+      copyToClipboard();
+    }
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      // Modern approach using Clipboard API
+      if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(shareUrl);
         setCopied(true);
+        setSnackbarOpen(true);
         setTimeout(() => setCopied(false), 2000);
-      } catch (error) {
-        console.error('Error copying to clipboard:', error);
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = shareUrl;
+        textArea.style.position = 'fixed';  // Avoid scrolling to bottom
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        if (successful) {
+          setCopied(true);
+          setSnackbarOpen(true);
+          setTimeout(() => setCopied(false), 2000);
+        } else {
+          console.error('Fallback: Could not copy text');
+        }
       }
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
     }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   const handleWhatsAppShare = () => {
@@ -112,17 +151,29 @@ export default function SharePopup({ user, onClose }: SharePopupProps) {
           <Button
             variant="outlined"
             size="large"
-            startIcon={copied ? <Check /> : <Share />}
-            onClick={handleShare}
+            startIcon={copied ? <Check /> : <ContentCopy />}
+            onClick={copyToClipboard}
           >
             {copied ? 'Copied!' : 'Copy Link'}
           </Button>
+          {canNativeShare && (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              startIcon={<Share />}
+              onClick={handleShare}
+            >
+              Share
+            </Button>
+          )}
         </Box>
       </DialogContent>
 
       <Snackbar
-        open={copied}
+        open={snackbarOpen}
         autoHideDuration={2000}
+        onClose={handleSnackbarClose}
         message="Link copied to clipboard!"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       />
