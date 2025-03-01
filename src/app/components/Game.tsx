@@ -58,7 +58,16 @@ export default function Game({ username, onExit }: GameProps) {
   const loadNewDestination = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/destinations/random');
+      // Build the URL with query parameters to exclude current destination
+      let url = '/api/destinations/random';
+      
+      // Add query parameters to exclude current destination if it exists
+      if (gameState.currentDestination) {
+        const { city, country } = gameState.currentDestination;
+        url += `?excludeCity=${encodeURIComponent(city)}&excludeCountry=${encodeURIComponent(country)}`;
+      }
+      
+      const response = await fetch(url);
       const data = await response.json();
       
       // Select 1-2 random clues

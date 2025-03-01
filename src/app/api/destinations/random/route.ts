@@ -3,8 +3,13 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import type { DestinationsData, Destination } from '@/app/types/destinations';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    // Get the current destination to exclude from the URL
+    const url = new URL(request.url);
+    const excludeCity = url.searchParams.get('excludeCity');
+    const excludeCountry = url.searchParams.get('excludeCountry');
+    
     // Read destinations from JSON file
     const dataDirectory = path.join(process.cwd(), 'src/app/data');
     const fileContents = await fs.readFile(
@@ -13,9 +18,17 @@ export async function GET() {
     );
     const data: DestinationsData = JSON.parse(fileContents);
     
-    // Get random destination
-    const randomIndex = Math.floor(Math.random() * data.destinations.length);
-    const destination = data.destinations[randomIndex];
+    // Filter out the current destination if provided
+    let availableDestinations = data.destinations;
+    if (excludeCity && excludeCountry) {
+      availableDestinations = data.destinations.filter(
+        dest => !(dest.city === excludeCity && dest.country === excludeCountry)
+      );
+    }
+    
+    // Get random destination from filtered list
+    const randomIndex = Math.floor(Math.random() * availableDestinations.length);
+    const destination = availableDestinations[randomIndex];
     
     // Generate random options including the correct answer
     const options = generateOptions(data.destinations, destination);
