@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Globetrotter
+
+A fun geography quiz game that tests your knowledge of world destinations. Guess the city based on clues and learn interesting facts about places around the world!
+
+## Features
+
+- Interactive geography quiz game
+- Random destination selection from a curated database
+- Multiple-choice answers
+- Score tracking
+- Fun facts and trivia about each destination
+- Responsive design with light/dark mode support
+- Shareable results
+
+## Technology Stack
+
+- **Frontend**: 
+  - [Next.js 14](https://nextjs.org/) with App Router
+  - [React 18](https://reactjs.org/)
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [Material UI](https://mui.com/) for UI components
+  - [Emotion](https://emotion.sh/) for styled components
+  - [Canvas Confetti](https://www.npmjs.com/package/canvas-confetti) for celebration effects
+
+- **Testing**:
+  - [Jest](https://jestjs.io/) for unit and integration testing
+  - [Testing Library](https://testing-library.com/) for React component testing
+
+- **Development Tools**:
+  - [ESLint](https://eslint.org/) for code linting
+  - [Tailwind CSS](https://tailwindcss.com/) for utility-first CSS
+  - [TypeScript](https://www.typescriptlang.org/) for type safety
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/TheGlobetrotter.git
+   cd TheGlobetrotter
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+## Testing
+
+Run the test suite:
 
 ```bash
-npm run dev
+npm test
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run tests in watch mode during development:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run test:watch
+# or
+yarn test:watch
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/                  # Next.js App Router
+│   ├── api/              # API routes
+│   │   └── destinations/ # Destinations API
+│   ├── components/       # React components
+│   ├── contexts/         # React contexts
+│   ├── data/             # Static data
+│   ├── lib/              # Utility functions
+│   ├── theme/            # Theme configuration
+│   ├── types/            # TypeScript type definitions
+│   ├── page.tsx          # Home page
+│   └── layout.tsx        # Root layout
+├── public/               # Static assets
+└── __tests__/            # Test files
+```
 
-To learn more about Next.js, take a look at the following resources:
+## API Routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `GET /api/destinations/random` - Returns a random destination with multiple-choice options
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The application can be deployed on [Vercel](https://vercel.com/) or any other platform that supports Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+# or
+yarn build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Decisions
+
+- **Next.js App Router**: Used for its file-based routing system and built-in API routes
+- **Material UI**: Chosen for its comprehensive component library and theming capabilities
+- **TypeScript**: Implemented for type safety and better developer experience
+- **Jest**: Selected for testing to ensure code reliability
+- **Static Data**: Destinations are stored in a JSON file for simplicity, but could be migrated to a database in the future
+
+## Future Enhancements
+
+- User authentication and profiles
+- Leaderboards
+- More quiz categories
+- Progressive Web App (PWA) support
+- Multiplayer mode
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

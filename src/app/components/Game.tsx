@@ -18,7 +18,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Fade
+  Fade,
+  useTheme
 } from '@mui/material';
 import {
   ExitToApp,
@@ -26,7 +27,8 @@ import {
   FlightTakeoff,
   CheckCircle,
   Cancel,
-  LocationOn
+  LocationOn,
+  Public
 } from '@mui/icons-material';
 
 interface GameProps {
@@ -35,6 +37,7 @@ interface GameProps {
 }
 
 export default function Game({ username, onExit }: GameProps) {
+  const theme = useTheme();
   const [gameState, setGameState] = useState<GameState>({
     selectedClues: [],
     options: [],
@@ -48,7 +51,9 @@ export default function Game({ username, onExit }: GameProps) {
   const [feedback, setFeedback] = useState<{
     isCorrect: boolean;
     fact: string;
+    correctAnswer?: string;
   } | null>(null);
+  const [hoveredOption, setHoveredOption] = useState<string | null>(null);
 
   const loadNewDestination = async () => {
     setLoading(true);
@@ -101,7 +106,9 @@ export default function Game({ username, onExit }: GameProps) {
 
     setFeedback({
       isCorrect,
-      fact: randomFact
+      fact: randomFact,
+      // Include the correct answer when the user's answer is wrong
+      ...(isCorrect ? {} : { correctAnswer })
     });
 
     // Update score
@@ -195,21 +202,59 @@ export default function Game({ username, onExit }: GameProps) {
             <Grid container spacing={2}>
               {gameState.options.map((option) => (
                 <Grid item xs={12} sm={6} key={option}>
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    color="inherit"
-                    onClick={() => handleAnswer(option)}
+                  <Card 
+                    elevation={hoveredOption === option ? 8 : 3}
                     sx={{
-                      p: 2,
-                      textAlign: 'left',
-                      justifyContent: 'flex-start',
-                      textTransform: 'none',
-                      fontSize: '1.1rem'
+                      height: '100%',
+                      transition: 'all 0.3s ease',
+                      transform: hoveredOption === option ? 'translateY(-8px)' : 'none',
+                      cursor: 'pointer',
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      border: hoveredOption === option ? `2px solid ${theme.palette.primary.main}` : 'none',
+                      '&:hover': {
+                        borderColor: theme.palette.primary.main,
+                      }
                     }}
+                    onMouseEnter={() => setHoveredOption(option)}
+                    onMouseLeave={() => setHoveredOption(null)}
+                    onClick={() => handleAnswer(option)}
                   >
-                    {option}
-                  </Button>
+                    <CardContent sx={{ 
+                      p: 0, 
+                      height: '100%',
+                      '&:last-child': { pb: 0 }
+                    }}>
+                      <Box 
+                        sx={{ 
+                          display: 'flex',
+                          alignItems: 'center',
+                          p: 2,
+                          height: '100%',
+                          background: hoveredOption === option 
+                            ? `linear-gradient(135deg, ${theme.palette.primary.light}20, ${theme.palette.primary.main}10)`
+                            : 'none',
+                        }}
+                      >
+                        <Public sx={{ 
+                          mr: 2, 
+                          color: theme.palette.primary.main,
+                          fontSize: '2rem',
+                          opacity: hoveredOption === option ? 1 : 0.7,
+                          transition: 'all 0.3s ease',
+                        }} />
+                        <Typography 
+                          variant="h6" 
+                          sx={{ 
+                            fontWeight: hoveredOption === option ? 'bold' : 'normal',
+                            transition: 'all 0.2s ease',
+                          }}
+                        >
+                          {option}
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
@@ -229,6 +274,11 @@ export default function Game({ username, onExit }: GameProps) {
                       <Typography variant="h6" gutterBottom>
                         {feedback.isCorrect ? '🎉 Brilliant!' : '💫 Nice try!'}
                       </Typography>
+                      {!feedback.isCorrect && feedback.correctAnswer && (
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 'bold' }}>
+                          The correct answer was: {feedback.correctAnswer}
+                        </Typography>
+                      )}
                       <Typography>
                         {feedback.fact}
                       </Typography>
@@ -242,6 +292,16 @@ export default function Game({ username, onExit }: GameProps) {
                   size="large"
                   onClick={handleNextDestination}
                   startIcon={<FlightTakeoff />}
+                  sx={{
+                    py: 1.5,
+                    borderRadius: '12px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 20px rgba(0, 0, 0, 0.15)',
+                    }
+                  }}
                 >
                   Next Destination
                 </Button>
