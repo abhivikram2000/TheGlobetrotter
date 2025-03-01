@@ -11,9 +11,21 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/globe-favicon.svg', type: 'image/svg+xml' }
     ],
-    apple: { url: '/favicon.ico', sizes: 'any' }
+    apple: { url: '/icons/apple-touch-icon.png', type: 'image/png' },
+    other: [
+      {
+        rel: 'apple-touch-icon',
+        url: '/icons/apple-touch-icon.png',
+      },
+      {
+        rel: 'manifest',
+        url: '/site.webmanifest'
+      }
+    ]
   }
 };
 
