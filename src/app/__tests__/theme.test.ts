@@ -8,6 +8,7 @@ describe('Theme Configuration', () => {
     expect(theme.palette.mode).toBe('light');
     expect(theme.palette.primary.main).toBe('#2c3e50');
     expect(theme.palette.secondary.main).toBe('#3498db');
+    expect(theme.palette.error.main).toBe('#e74c3c');
     expect(theme.palette.background.default).toBe('#f5f7fa');
     expect(theme.palette.background.paper).toBe('#ffffff');
   });
@@ -18,6 +19,7 @@ describe('Theme Configuration', () => {
     expect(theme.palette.mode).toBe('dark');
     expect(theme.palette.primary.main).toBe('#34495e');
     expect(theme.palette.secondary.main).toBe('#5dade2');
+    expect(theme.palette.error.main).toBe('#e74c3c');
     expect(theme.palette.background.default).toBe('#121212');
     expect(theme.palette.background.paper).toBe('#1e1e1e');
   });
@@ -27,6 +29,7 @@ describe('Theme Configuration', () => {
 
     expect(theme.palette.primary.main).toBe('#16a085');
     expect(theme.palette.secondary.main).toBe('#27ae60');
+    expect(theme.palette.error.main).toBe('#8e44ad');
   });
 
   it('applies typography settings', () => {

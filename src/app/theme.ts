@@ -19,7 +19,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#5dade2',
           dark: '#2980b9',
         },
-        accent: '#e74c3c',
+        error: {
+          main: '#e74c3c',
+        },
       },
       dark: {
         primary: {
@@ -32,7 +34,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#85c1e9',
           dark: '#3498db',
         },
-        accent: '#e74c3c',
+        error: {
+          main: '#e74c3c',
+        },
       },
     },
     emerald: {
@@ -47,7 +51,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#2ecc71',
           dark: '#1e8449',
         },
-        accent: '#8e44ad',
+        error: {
+          main: '#8e44ad',
+        },
       },
       dark: {
         primary: {
@@ -60,7 +66,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#58d68d',
           dark: '#27ae60',
         },
-        accent: '#9b59b6',
+        error: {
+          main: '#9b59b6',
+        },
       },
     },
     coral: {
@@ -75,7 +83,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#ec7063',
           dark: '#c0392b',
         },
-        accent: '#3498db',
+        error: {
+          main: '#3498db',
+        },
       },
       dark: {
         primary: {
@@ -88,7 +98,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#f1948a',
           dark: '#e74c3c',
         },
-        accent: '#5dade2',
+        error: {
+          main: '#5dade2',
+        },
       },
     },
     lavender: {
@@ -103,7 +115,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#7d6cc8',
           dark: '#4a3b82',
         },
-        accent: '#16a085',
+        error: {
+          main: '#16a085',
+        },
       },
       dark: {
         primary: {
@@ -116,7 +130,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#9786d1',
           dark: '#5b48a2',
         },
-        accent: '#1abc9c',
+        error: {
+          main: '#1abc9c',
+        },
       },
     },
     nordic: {
@@ -131,7 +147,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#3498db',
           dark: '#1f618d',
         },
-        accent: '#c0392b',
+        error: {
+          main: '#c0392b',
+        },
       },
       dark: {
         primary: {
@@ -144,7 +162,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#5dade2',
           dark: '#2980b9',
         },
-        accent: '#e74c3c',
+        error: {
+          main: '#e74c3c',
+        },
       },
     },
     autumn: {
@@ -159,7 +179,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#9b59b6',
           dark: '#5b2c6f',
         },
-        accent: '#2980b9',
+        error: {
+          main: '#2980b9',
+        },
       },
       dark: {
         primary: {
@@ -172,7 +194,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#af7ac5',
           dark: '#7d3c98',
         },
-        accent: '#3498db',
+        error: {
+          main: '#3498db',
+        },
       },
     },
     azure: {
@@ -187,7 +211,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#16a085',
           dark: '#0e6655',
         },
-        accent: '#e74c3c',
+        error: {
+          main: '#e74c3c',
+        },
       },
       dark: {
         primary: {
@@ -200,7 +226,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#1abc9c',
           dark: '#138d75',
         },
-        accent: '#ec7063',
+        error: {
+          main: '#ec7063',
+        },
       },
     },
     golden: {
@@ -215,7 +243,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#b9770e',
           dark: '#5d3f06',
         },
-        accent: '#2980b9',
+        error: {
+          main: '#2980b9',
+        },
       },
       dark: {
         primary: {
@@ -228,7 +258,9 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'midnight
           light: '#d68910',
           dark: '#7e5109',
         },
-        accent: '#3498db',
+        error: {
+          main: '#3498db',
+        },
       },
     },
   };
