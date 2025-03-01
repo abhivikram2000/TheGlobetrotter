@@ -1,4 +1,5 @@
-import { createTheme, PaletteMode } from '@mui/material/styles';
+import { createTheme, PaletteMode, Theme } from '@mui/material/styles';
+import { Components } from '@mui/material/styles/components';
 
 export type ColorScheme = 'default' | 'sunset' | 'ocean' | 'forest' | 'aurora' | 'cosmic' | 'desert' | 'royal';
 
@@ -255,6 +256,22 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'default'
       h6: {
         fontWeight: 600,
       },
+      subtitle1: {
+        fontWeight: 500,
+      },
+      subtitle2: {
+        fontWeight: 500,
+      },
+      body1: {
+        fontWeight: 400,
+      },
+      body2: {
+        fontWeight: 400,
+      },
+      button: {
+        fontWeight: 600,
+        textTransform: 'none' as const,
+      },
     },
     shape: {
       borderRadius: 12,
@@ -262,19 +279,23 @@ const getDesignTokens = (mode: PaletteMode, colorScheme: ColorScheme = 'default'
     components: {
       MuiButton: {
         styleOverrides: {
-          root: {
-            textTransform: 'none',
+          root: ({ theme }: { theme: Theme }) => ({
+            textTransform: 'none' as const,
             fontWeight: 600,
-          },
+            borderRadius: '0.5rem',
+            '&:hover': {
+              boxShadow: 'none',
+            },
+          }),
         },
       },
       MuiCard: {
         styleOverrides: {
           root: {
-            borderRadius: 16,
-            ...(mode === 'dark' && {
-              backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-            }),
+            borderRadius: '0.75rem',
+            boxShadow: mode === 'light' 
+              ? '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)'
+              : '0 1px 3px 0 rgb(0 0 0 / 0.25), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
           },
         },
       },
